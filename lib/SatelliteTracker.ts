@@ -27,16 +27,17 @@ export class SatelliteTracker {
     const response = await fetch(`http://nestio.space/api/satellite/data`)
     
     if ( ! response.ok ) {
-      // Retries or errors.
+      console.error(`Polling failed with status: ${response.status}.`)
+      console.log(response)
     }
 
     const data = await response.json()
    
-    const lastUpdatedInSeconds = new Date(data.last_updated).getTime()
+    const lastUpdatedInSeconds = new Date(data.last_updated+'.000Z').getTime()
     if ( this.data.length == 0 || lastUpdatedInSeconds > this.data[0].lastUpdated) {
       // Most recent result is going on the front of the array.
       this.data.unshift({
-        lastUpdated: new Date(data.last_updated).getTime(),
+        lastUpdated: new Date(data.last_updated+'.000Z').getTime(),
         altitude: parseFloat(data.altitude)
       })
 

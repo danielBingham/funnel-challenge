@@ -18,8 +18,8 @@ export class HealthChecker {
    */
   checkHealth(data: SatelliteAltitude[]): string {
     const calculator = new SatelliteStatsCalculator(data)
-    const currentMinute = calculator.getStats(60)
-    const previousMinute = calculator.getStats(60,60)
+    const currentMinute = calculator.getStats(60000)
+    const previousMinute = calculator.getStats(60000,60000)
 
     if ( currentMinute.averageAltitude < 160 ) {
       return "WARNING: RAPID ORBITAL DECAY IMMINENT"

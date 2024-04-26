@@ -17,7 +17,7 @@ export class SatelliteStatsCalculator {
    * now() and `length` is how long a window we want to calculate stats for in
    * seconds.
    *
-   * @param {number} length   The length in seconds of the window we want to calculate stats for.
+   * @param {number} length   The length in miliseconds of the window we want to calculate stats for.
    * @param {number} offset   (Optional) An offset from now in seconds. (How far back in seconds do we want to start the window?)
    *
    * @return {SatelliteStats} An object containing the calculated minimum,
@@ -26,7 +26,7 @@ export class SatelliteStatsCalculator {
   getStats(length: number, offset?: number): SatelliteStats {
     offset = offset || 0
  
-    if ( offset + length > 300 ) {
+    if ( offset + length > 300000 ) {
       throw new Error('Window out of range.  We only keep 5 minutes of data.') 
     }
 
@@ -53,9 +53,9 @@ export class SatelliteStatsCalculator {
       }
     }
 
-    stats.minimumAltitude = Math.min(...altitudes)
-    stats.maximumAltitude = Math.max(...altitudes)
-    stats.averageAltitude = altitudes.reduce((sum, altitude) => sum+altitude, 0) / altitudes.length
+    stats.minimumAltitude = ( altitudes.length > 0 ? Math.min(...altitudes) : 0 )
+    stats.maximumAltitude = ( altitudes.length > 0 ? Math.max(...altitudes) : 0)
+    stats.averageAltitude = ( altitudes.length > 0 ? altitudes.reduce((sum, altitude) => sum+altitude, 0) / altitudes.length : 0 )
 
     return stats 
   }

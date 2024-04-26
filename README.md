@@ -1,5 +1,31 @@
 # Funnel Code Challenge
 
+## Initial setup
+
+To execute the initial setup, you'll need to run `npm install`. 
+
+```
+$ npm install
+```
+
+## Running
+
+To run the API:
+
+```
+$ npm start
+```
+
+You can then access the API through `http://localhost:3000`
+
+## Testing
+
+To run the tests:
+
+```
+$ npm run test
+```
+
 ## Problem
 
 Funnel has launched a satellite in order to tackle the lucrative lunar real

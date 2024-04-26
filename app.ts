@@ -21,20 +21,19 @@ tracker.track()
 
 app.get('/stats', function(request: Request, response: Response, next: NextFunction) {
   const calculator = new SatelliteStatsCalculator(tracker.data)
-  const stats = calculator.getStats(300)
-  response.json(stats)
+  const stats = calculator.getStats(300000)
+  return response.json(stats)
 })
 
 app.get('/health', function(request: Request, response: Response, next: NextFunction) {
   const checker = new HealthChecker()
   const message = checker.checkHealth(tracker.data)
 
-  response.json({ message: message })
+  return response.json({ message: message })
 })
 
-
 // catch 404 and forward to error handler
-app.use(function(request: Request, response: Response, next: NextFunction) {
+app.use('*', function(request: Request, response: Response, next: NextFunction) {
   next(createError(404));
 });
 

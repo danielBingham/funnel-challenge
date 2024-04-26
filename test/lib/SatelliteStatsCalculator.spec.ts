@@ -6,7 +6,7 @@ describe('SatelliteStatsCalculator', function() {
     it('should calculate the minimum, maximum, and average altitudes in a given window', function() {
       const fixture = getFixture('stable', Date.now())
       const calculator = new SatelliteStatsCalculator(fixture)
-      const stats = calculator.getStats(60)
+      const stats = calculator.getStats(60000)
 
       expect(stats.minimumAltitude).toEqual(160)
       expect(stats.maximumAltitude).toEqual(165)
@@ -16,7 +16,7 @@ describe('SatelliteStatsCalculator', function() {
     it('should only calculate the stats using altitudes with in the window', function() {
       const fixture = getFixture('stable', Date.now())
       const calculator = new SatelliteStatsCalculator(fixture)
-      const stats = calculator.getStats(30)
+      const stats = calculator.getStats(30000)
 
       expect(stats.minimumAltitude).toEqual(160)
       expect(stats.maximumAltitude).toEqual(162)
@@ -26,7 +26,7 @@ describe('SatelliteStatsCalculator', function() {
     it('should handle an offset accurately', function() {
       const fixture = getFixture('stable', Date.now())
       const calculator = new SatelliteStatsCalculator(fixture)
-      const stats = calculator.getStats(30, 30)
+      const stats = calculator.getStats(30000, 30000)
 
       expect(stats.minimumAltitude).toEqual(160)
       expect(stats.maximumAltitude).toEqual(165)
