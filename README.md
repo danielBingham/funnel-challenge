@@ -8,6 +8,9 @@ To execute the initial setup, you'll need to run `npm install`.
 $ npm install
 ```
 
+Uses `ts-node` and `typescript` which should work from a local install, but may
+need to be installed globally.  Developed on node v18.17.
+
 ## Running
 
 To run the API:
@@ -26,7 +29,7 @@ To run the tests:
 $ npm run test
 ```
 
-## Problem
+## Challenge 
 
 Funnel has launched a satellite in order to tackle the lucrative lunar real
 estate market. To make sure the satellite doesn’t come crashing back down,

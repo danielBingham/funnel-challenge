@@ -33,7 +33,7 @@ app.get('/health', function(request: Request, response: Response, next: NextFunc
 })
 
 // catch 404 and forward to error handler
-app.use('*', function(request: Request, response: Response, next: NextFunction) {
+app.use(function(request: Request, response: Response, next: NextFunction) {
   next(createError(404));
 });
 
